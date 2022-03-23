@@ -1,23 +1,25 @@
 ﻿using System.Drawing;
 
-namespace TweetTrends.Domain.Model;
-
-public class Tweet
+namespace TweetTrends.Domain.Model
 {
-    public readonly PointF Location;
-    public readonly DateTime PublicationTime;
-    public readonly string Description;
-
-
-    public Tweet(PointF location, DateTime publicationTime, string description)
+    public class Tweet
     {
-        Location = location;
-        PublicationTime = publicationTime;
-        Description = description;
-    }
+        public readonly PointF Location;
+        public readonly DateTime PublicationTime;
+        public readonly string Description;
 
-    public override string ToString()
-    {
-        return $"[{Location.X}, {Location.Y}] {PublicationTime} {Description}";
+        public float AverageSentiment { get; set; }
+
+        public Tweet(PointF location, DateTime publicationTime, string description)
+        {
+            Location = location;
+            PublicationTime = publicationTime;
+            Description = description;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Location.X}, {Location.Y}] {PublicationTime} {Description}";
+        }
     }
 }
