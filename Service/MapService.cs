@@ -16,21 +16,19 @@ namespace TweetTrends.Service
             Sentiments = SentimentsContext.GetSentiments();
         }
 
-        private float GetAverageSentiment(Tweet tweet)
+        public float GetSentiment(Tweet tweet)
         {
             var sumSentiment = 0.0f;
-            var count = 0;
 
             foreach (var sentiment in Sentiments)
             {
                 if (tweet.Description.Contains(sentiment.Description))
                 {
                     sumSentiment += sentiment.Value;
-                    ++count;
                 }
             }
 
-            return sumSentiment / count;
+            return sumSentiment;
         }
     }
 }
