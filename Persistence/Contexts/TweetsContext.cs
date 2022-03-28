@@ -18,8 +18,8 @@ namespace TweetTrends.Persistence.Contexts
 
                 var location = formattedTweet[0].Split(new char[] { '[', ']', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-                var x = Convert.ToDouble(location[1].Replace('.', ',')) * 33.0f + 4125.0f;
-                var y = Convert.ToDouble(location[0].Replace('.', ',')) * -33.0f + 1750.0f;
+                var x = Convert.ToDouble(location[1].Replace('.', ',')) * 15.0f + 2800.0f;
+                var y = Convert.ToDouble(location[0].Replace('.', ',')) * -15.0f + 1200.0f;
 
                 tweets.Add(new Tweet(
                     new PointF((float) x, (float) y),

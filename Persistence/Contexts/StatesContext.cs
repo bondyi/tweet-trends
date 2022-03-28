@@ -27,8 +27,8 @@ namespace TweetTrends.Persistence.Contexts
                     foreach (var point in polygon.EnumerateArray())
                     {
                         points.Add(new PointF(
-                            (float)point[0].GetDouble() * 33.0f + 4125.0f,
-                            (float)point[1].GetDouble() * -33.0f + 1750.0f));
+                            (float)point[0].GetDouble() * 15.0f + 2800.0f,
+                            (float)point[1].GetDouble() * -15.0f + 1200.0f));
                     }
 
                     polygons.Add(points);

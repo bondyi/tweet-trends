@@ -1,6 +1,7 @@
 using TweetTrends.Service;
 using System.Drawing.Drawing2D;
 using TweetTrends.Domain.Model;
+using TweetTrends.Persistence.Contexts;
 
 namespace TweetTrends.DesktopApp
 {
@@ -19,35 +20,37 @@ namespace TweetTrends.DesktopApp
         {
             var graphics = CreateGraphics();
 
+            graphics.DrawString(FilePaths.Tweets, new Font("Arial", 10f), new SolidBrush(Color.Black), 0, 0);
+
             Rectangle rectangle = new Rectangle(10, 800, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.DarkBlue), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":Unknown", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 803);
+            graphics.DrawString(@"Unknown", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 802);
 
             rectangle = new Rectangle(10, 820, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.FromArgb(204, 0, 0)), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":<=-0.1", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 823);
+            graphics.DrawString(@"<= -0.1", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 822);
 
             rectangle = new Rectangle(10, 840, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.Orange), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":>-0.1 & <=0.0", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 843);
+            graphics.DrawString(@"> -0.1 and <= 0", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 842);
 
             rectangle = new Rectangle(10, 860, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.Yellow), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":>0.0 & <=0.1", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 863);
+            graphics.DrawString(@"> 0 and <= 0.1", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 862);
 
             rectangle = new Rectangle(10, 880, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.Green), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":>0.1 & <=0.2", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 883);
+            graphics.DrawString(@"> 0.1 and <= 0.2", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 882);
 
             rectangle = new Rectangle(10, 900, 20, 20);
             graphics.FillRectangle(new SolidBrush(Color.Aqua), rectangle);
             graphics.DrawRectangle(new Pen(Color.Black), rectangle);
-            graphics.DrawString(@":>0.2", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 903);
+            graphics.DrawString(@"> 0.2", new Font("Arial", 10f), new SolidBrush(Color.Black), 35, 902);
 
             var graphicsPaths = new List<GraphicsPath>();
             var tweets = new List<Tweet>();
@@ -91,7 +94,12 @@ namespace TweetTrends.DesktopApp
                 graphics.DrawPath(Pens.Black, graphicsPath);
             }
 
-            foreach (var tweet in tweets) graphics.DrawEllipse(Pens.White, tweet.Location.X, tweet.Location.Y, 2.0f, 2.0f);
+
+            foreach (var tweet in tweets)
+            {
+                graphics.FillEllipse(Brushes.Blue, tweet.Location.X, tweet.Location.Y, 5.0f, 5.0f);
+                graphics.DrawEllipse(Pens.White, tweet.Location.X, tweet.Location.Y, 5.0f, 5.0f);
+            }
         }
     }
 }
